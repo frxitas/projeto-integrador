@@ -1,0 +1,15 @@
+.default-layout {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.default-layout-content {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  overflow-x: auto;
+}

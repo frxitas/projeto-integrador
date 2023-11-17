@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #f8b475;
+  padding: 24px 0px;
+  transition: width 300ms;
+  -webkit-transition: width 300ms;
+  -moz-transition: width 300ms;
+  -ms-transition: width 300ms;
+  -o-transition: width 300ms;
+}
+
+.open {
+  width: 240px;
+}
+
+.close {
+  width: 80px;
+}
+
+.navbar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.navbar-button:hover {
+  color: white;
+}
+
+.navbar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+  max-height: 100%;
+  gap: 0px;
+  padding: 0px 28px;
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  height: fit-content;
+  list-style-type: none;
+  padding: 0px;
+}
+
+.navbar-list-item-link {
+  color: black;
+  transition: opacity 300ms ease;
+  -webkit-transition: opacity 300ms ease;
+  -moz-transition: opacity 300ms ease;
+  -ms-transition: opacity 300ms ease;
+  -o-transition: opacity 300ms ease;
+}
+
+.navbar-list-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+}
+
+.navbar-list-item:hover {
+  color: white;
+}
+
+.show {
+  opacity: 100;
+  visibility: visible;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logout-button:hover {
+  color: white;
+}
