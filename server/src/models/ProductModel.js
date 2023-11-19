@@ -5,29 +5,34 @@ class Product extends Model {}
 
 Product.init(
   {
-    name: {
+    PROD_ID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    PROD_NOME: {
       type: DataTypes.STRING,
     },
-    description: {
+    PROD_DESC: {
       type: DataTypes.STRING,
     },
-    price: {
+    PROD_VALOR: {
       type: DataTypes.DECIMAL,
     },
-    um_id: {
+    PROD_UMED_ID: {
       type: DataTypes.INTEGER,
     },
-    group_id: {
+    PROD_GRUPO_ID: {
       type: DataTypes.INTEGER,
     },
-    manufacturer_id: {
+    PROD_FABRICANTE_ID: {
       type: DataTypes.INTEGER,
     },
   },
   {
     sequelize,
-    modelName: "product",
-    timestamps: false
+    modelName: "PRODUTO",
+    timestamps: false,
+    freezeTableName: true 
   }
 );
 

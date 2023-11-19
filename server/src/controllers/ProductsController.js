@@ -17,8 +17,8 @@ module.exports = {
   async one(request, response) {
     try {
 
-      const id = request.params.id;
-      const product = await Product.findOne({ where: { id } });
+      const PROD_ID = request.params.id;
+      const product = await Product.findOne({ where: { PROD_ID } });
       if (!product) {
         return response.status(400).json("Produto não encontrado!");
       }
@@ -34,7 +34,17 @@ module.exports = {
   async create(request, response) {
     try {
 
-      await Product.create(request.body);
+      const { name, description, price, um_id, group_id, manufacturer_id } = request.body;      
+
+      await Product.create({
+        PROD_NOME: name,
+        PROD_DESC: description,
+        PROD_VALOR: price,
+        PROD_UMED_ID: um_id,
+        PROD_GRUPO_ID: group_id,
+        PROD_FABRICANTE_ID: manufacturer_id,
+      });
+      
       response.status(200).json("Produto cadastrado!");
 
     } catch (error) {
@@ -48,19 +58,19 @@ module.exports = {
     try {
 
       const { name, description, price, um_id, group_id, manufacturer_id } = request.body;
-      const id = request.params.id;
-      const product = await Product.findOne({ where: { id } });
+      const PROD_ID = request.params.id;
+      const product = await Product.findOne({ where: { PROD_ID } });
 
       if (!product) {
         return response.status(400).json("Produto não encontrado!");
       }
 
-      product.name = name;
-      product.price = price;
-      product.description = description;
-      product.um_id = um_id;
-      product.group_id = group_id;
-      product.manufacturer_id = manufacturer_id;
+      product.PROD_NOME = name;
+      product.PROD_DESC = description;
+      product.PROD_VALOR = price;
+      product.PROD_UMED_ID = um_id;
+      product.PROD_GRUPO_ID = group_id;
+      product.PROD_FABRICANTE_ID = manufacturer_id;
 
       await product.save();
       response.status(200).json("Produto atualizado!");
