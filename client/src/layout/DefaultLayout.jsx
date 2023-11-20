@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar/Navbar.jsx";
+import Navbar from "../ds/Navbar/Navbar.jsx";
 import "./DefaultLayout.css";
 
 const DefaultLayout = ({ children }) => {

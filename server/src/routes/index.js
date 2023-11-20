@@ -7,7 +7,7 @@ const unitiesRouter = require('./unity.routes.js');
 
 const routes = Router();
 
-routes.use("/products", productsRouter);
+routes.use("/product", productsRouter);
 routes.use("/manufacturers", manufacturersRouter);
 routes.use("/groups", groupsRouter);
 routes.use("/unities", unitiesRouter);

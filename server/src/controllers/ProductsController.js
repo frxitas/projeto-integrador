@@ -1,4 +1,5 @@
 const Product = require("../models/ProductModel.js");
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   async all(request, response) {
@@ -35,7 +36,15 @@ module.exports = {
     try {
 
       const { name, description, price, um_id, group_id, manufacturer_id } = request.body;      
-
+      console.log({
+        PROD_NOME: name,
+        PROD_DESC: description,
+        PROD_VALOR: price,
+        PROD_UMED_ID: um_id,
+        PROD_GRUPO_ID: group_id,
+        PROD_FABRICANTE_ID: manufacturer_id,
+      });
+      
       await Product.create({
         PROD_NOME: name,
         PROD_DESC: description,
@@ -85,8 +94,8 @@ module.exports = {
   async delete(request,response){
     try {
 
-      const id = request.params.id;
-      const product = await Product.destroy({ where: { id } });
+      const PROD_ID = request.params.id;
+      const product = await Product.destroy({ where: { PROD_ID } });
 
       if (!product) {
         return response.status(400).json("Produto não encontrado!");
