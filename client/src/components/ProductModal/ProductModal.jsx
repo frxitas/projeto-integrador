@@ -21,7 +21,7 @@ const ProductModal = ({
   const [productForm, setProductForm] = useState({
     name: "",
     description: "",
-    price: "",
+    price: 0,
     umedId: 1,
     groupId: 1,
     manufacturerId: 1,
@@ -94,9 +94,9 @@ const ProductModal = ({
         name: "",
         description: "",
         price: "",
-        umedId: 0,
-        groupId: 0,
-        manufacturerId: 0,
+        umedId: 1,
+        groupId: 1,
+        manufacturerId: 1,
       });
   }, [isOpen, selectedProduct]);
 
