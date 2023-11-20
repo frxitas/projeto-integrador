@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./Table.css";
 
-const Td = ({ children, isFitContent }) => {
-  return <td className={`td ${isFitContent ? "fit" : ""}`}>{children}</td>;
-};
+const Td = forwardRef(({ children, isFitContent, ...props }, ref) => {
+  return <td ref={ref} className={`td ${isFitContent ? "fit" : ""}`} {...props}>{children}</td>;
+});
 
 export default Td;

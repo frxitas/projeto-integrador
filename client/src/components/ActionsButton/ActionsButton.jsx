@@ -4,7 +4,12 @@ import "./ActionsButton.css";
 import { Trash, Pencil, Plus } from "@phosphor-icons/react";
 import DeleteProductModal from "../DeleteProductModal/DeleteProductModal";
 
-const ActionsButton = ({ onOpen, selectedProduct }) => {
+const ActionsButton = ({
+  onOpen,
+  selectedProduct,
+  fetchProducts,
+  setSelectedProduct,
+}) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
@@ -33,6 +38,8 @@ const ActionsButton = ({ onOpen, selectedProduct }) => {
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         selectedProduct={selectedProduct}
+        fetchProducts={fetchProducts}
+        setSelectedProduct={setSelectedProduct}
       />
     </div>
   );

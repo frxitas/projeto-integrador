@@ -26,7 +26,6 @@ const ProductModal = ({
     groupId: 1,
     manufacturerId: 1,
   });
-  console.log(productForm);
 
   const [successfullySaved, setSuccessfullySaved] = useState({
     status: "idle",
@@ -65,7 +64,6 @@ const ProductModal = ({
 
     if (response.status === 200) {
       setSuccessfullySaved({ status: "ok", action: "creation" });
-      alert("criado com sucesso");
     }
   };
 

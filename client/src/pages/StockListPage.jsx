@@ -26,8 +26,7 @@ const StockListPage = () => {
 
   const fetchProducts = async () => {
     const response = await axios.get("http://localhost:3000/product/list");
-    console.log(response);
-    
+
     if (response.status === 200) setProducts(response.data);
   };
 
@@ -58,72 +57,83 @@ const StockListPage = () => {
     ]);
   }, []);
 
-  const handleSelectedProduct = (e, index, product) => {
-    if (e.target.checked) setSelectedProduct({ ...product, index });
+  const handleSelectedProduct = (e, product) => {
+    if (e.target.checked) setSelectedProduct({ ...product });
     else setSelectedProduct({});
   };
   return (
     <DefaultLayout>
-      {!products.length ? (
-        <div>Carregando</div>
-      ) : (
-        <Table>
-          <Thead>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th isFitContent></Th>
+            <Th>Nome</Th>
+            <Th>Preço</Th>
+            <Th>Grupo</Th>
+            <Th>Fabricante</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {manufacturers.length && groups.length && products.length ? (
+            products?.map((product) => {
+              let manufacturer = manufacturers?.filter(
+                (item) => item.FABRICANTE_ID === product.PROD_FABRICANTE_ID
+              )[0];
+              let group = groups?.filter(
+                (item) => item.GRUPO_ID === product.PROD_GRUPO_ID
+              )[0];
+              return (
+                <Tr key={product.PROD_ID}>
+                  <Td isFitContent>
+                    <input
+                      type="checkbox"
+                      style={{
+                        height: 16,
+                        width: 16,
+                        cursor: "pointer",
+                      }}
+                      checked={product.PROD_ID === selectedProduct.PROD_ID}
+                      onChange={(e) => handleSelectedProduct(e, product)}
+                      disabled={
+                        selectedProduct.PROD_ID &&
+                        selectedProduct.PROD_ID !== product.PROD_ID
+                      }
+                    />
+                  </Td>
+                  <Td>{product.PROD_NOME}</Td>
+                  <Td>
+                    {new Intl.NumberFormat("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(product.PROD_VALOR)}
+                  </Td>
+                  <Td>{group.GRUPO_NOME}</Td>
+                  <Td>{manufacturer.FABRICANTE_NOME}</Td>
+                </Tr>
+              );
+            })
+          ) : (
             <Tr>
-              <Th isFitContent></Th>
-              <Th>Nome</Th>
-              {/* <Th>Descrição</Th> */}
-              <Th>Preço</Th>
-              <Th>Grupo</Th>
-              <Th>Fabricante</Th>
+              <Td colSpan={5}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  Sem valor para exibir!
+                </div>
+              </Td>
             </Tr>
-          </Thead>
-          <Tbody>
-            {manufacturers.length &&
-              groups.length &&
-              products?.map((product, index) => {
-                let manufacturer = manufacturers?.filter(
-                  (item) => item.FABRICANTE_ID === product.PROD_FABRICANTE_ID
-                )[0];
-                let group = groups?.filter(
-                  (item) => item.GRUPO_ID === product.PROD_GRUPO_ID
-                )[0];
-                return (
-                  <Tr key={product.PROD_ID}>
-                    <Td isFitContent>
-                      <input
-                        type="checkbox"
-                        style={{
-                          height: 16,
-                          width: 16,
-                          cursor: "pointer"
-                        }}
-                        checked={product.PROD_ID === selectedProduct.PROD_ID}
-                        onChange={(e) =>
-                          handleSelectedProduct(e, index, product)
-                        }
-                        disabled={selectedProduct.PROD_ID && selectedProduct.PROD_ID !== product.PROD_ID}
-                      />
-                    </Td>
-                    <Td>{product.PROD_NOME}</Td>
-                    {/* <Td>{product.PROD_DESC}</Td> */}
-                    <Td>
-                      {new Intl.NumberFormat("pt-br", {
-                        style: "currency",
-                        currency: "BRL",
-                      }).format(product.PROD_VALOR)}
-                    </Td>
-                    <Td>{group.GRUPO_NOME}</Td>
-                    <Td>{manufacturer.FABRICANTE_NOME}</Td>
-                  </Tr>
-                );
-              })}
-          </Tbody>
-        </Table>
-      )}
+          )}
+        </Tbody>
+      </Table>
 
       <ActionsButton
         selectedProduct={selectedProduct}
+        fetchProducts={fetchProducts}
+        setSelectedProduct={setSelectedProduct}
         onOpen={() => setModalIsOpen(true)}
       />
 

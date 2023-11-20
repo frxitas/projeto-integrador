@@ -40,6 +40,7 @@ const Select = ({ label, options, defaultValue, onChange }) => {
         <div className="select-content-list ">
           {options.map((item) => (
             <div
+              key={item.value}
               className={`select-content-list-item ${
                 item.value === selectedOption.value ? "selected-item" : ""
               }`}

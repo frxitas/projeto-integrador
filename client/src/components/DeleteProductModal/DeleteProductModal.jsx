@@ -4,7 +4,13 @@ import axios from "axios";
 
 import { Modal } from "../../ds/Modal";
 
-const DeleteProductModal = ({ isOpen, onClose, selectedProduct }) => {
+const DeleteProductModal = ({
+  isOpen,
+  onClose,
+  selectedProduct,
+  fetchProducts,
+  setSelectedProduct,
+}) => {
   const [successfullyDeleted, setSuccessfullyDeleted] = useState(false);
 
   const handleDeleteProduct = async () => {
@@ -19,6 +25,15 @@ const DeleteProductModal = ({ isOpen, onClose, selectedProduct }) => {
     setSuccessfullyDeleted(false);
     onClose();
     setTimeout(() => {
+      setSelectedProduct({
+        PROD_DESC: "",
+        PROD_FABRICANTE_ID: 0,
+        PROD_GRUPO_ID: 0,
+        PROD_ID: 0,
+        PROD_NOME: "",
+        PROD_UMED_ID: 0,
+        PROD_VALOR: 0,
+      });
       fetchProducts();
     }, 300);
   };
