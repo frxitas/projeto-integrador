@@ -1,0 +1,93 @@
+.actions-button {
+  position: absolute;
+  bottom: 8px;
+  right: 48px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: fit-content;
+  z-index: 10;
+}
+
+.actions-button-content {
+  display: flex;
+  padding: 10px 0px;
+  width: fit-content;
+  gap: 16px;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  padding: 8px;
+  border: none;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: lightcoral;
+}
+
+.delete-button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+  color: white;
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  padding: 8px;
+  border: none;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: lightblue;
+}
+
+.edit-button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: orange;
+  color: white;
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  padding: 8px;
+  border: none;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: lightsalmon;
+}

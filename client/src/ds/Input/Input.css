@@ -1,0 +1,24 @@
+.input-root {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+}
+
+.input-label {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 12px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.input-content {
+    height: 35px;
+    background-color: white;
+    border: 2px solid lightgray;
+    border-radius: 4px;
+    padding: 0px 8px;
+}
