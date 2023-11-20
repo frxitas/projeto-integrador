@@ -6,7 +6,7 @@ class Product extends Model {}
 Product.init(
   {
     PROD_ID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
     },
     PROD_NOME: {
