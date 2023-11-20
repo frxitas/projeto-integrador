@@ -29,7 +29,11 @@ const ActionsButton = ({
         >
           <Pencil size={16} weight="bold" />
         </button>
-        <button className="add-button" onClick={onOpen}>
+        <button
+          className="add-button"
+          disabled={selectedProduct.PROD_ID}
+          onClick={onOpen}
+        >
           <Plus size={16} weight="bold" />
         </button>
       </div>

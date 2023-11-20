@@ -89,7 +89,7 @@ const ProductModal = ({
 
   useEffect(() => {
     if (isOpen && selectedProduct.PROD_ID) getProductById();
-    else if (!isOpen)
+    else if (!isOpen && selectedProduct.PROD_ID)
       setProductForm({
         name: "",
         description: "",
