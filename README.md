@@ -1,13 +1,3 @@
-# projeto-integrador
-Nenhum selecionado
-
-Pular para o conteúdo
-Como usar o Gmail com leitores de tela
-Conversas
-58,32 GB de 100 GB usado(s)
-Termos · Privacidade · Regulamentos do programa
-Última atividade da conta: há 0 minuto
-Detalhes
 # Documentação do Projeto
 
 ## Introdução
@@ -65,5 +55,3 @@ Guilherme Freitas Rocha - Front-end
 Guilherme Henrique Totti Benatti - Back-end
 Kelvin Coelho Loiola - Banco de dados
 Vinícius Carmo Fonseca - Front-end
-readme.md
-Exibindo readme.md.
