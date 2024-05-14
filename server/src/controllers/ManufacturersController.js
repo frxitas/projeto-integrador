@@ -1,4 +1,4 @@
-const Manufacturer = require("../models/ManufacturerModel.js");
+const Manufacturer = require("./models/ManufacturerModel.js");
 
 module.exports = {
   async all(request, response) {

@@ -1,4 +1,4 @@
-const Product = require("../models/ProductModel.js");
+const Product = require("./models/ProductModel.js");
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
