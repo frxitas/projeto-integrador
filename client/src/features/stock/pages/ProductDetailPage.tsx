@@ -14,18 +14,33 @@ import {
 
 import { ProductDetailForm } from "../components/ProductDetailForm";
 import { useStore } from "@/store";
+import { twMerge } from "tailwind-merge";
+import { useParams } from "react-router-dom";
+import ProductTicketsList from "../components/ProductTicketsList";
 
 const ProductDetailPage = () => {
-  const { product, getGroups, getUmeds, getManufacturers } = useStore((state) => ({
-    product: state.product.data,
-    getProductById: state.getProductDetail,
-    getGroups: state.getGroups,
-    getUmeds: state.getUmeds,
-    getManufacturers: state.getManufecturers,
-  }));
+  const { id } = useParams();
+
+  const { product, getProductById, clearProduct, getGroups, getUmeds, getManufacturers } = useStore(
+    (state) => ({
+      product: state.product.data,
+      getProductById: state.getProductById,
+      clearProduct: state.clearProduct,
+      getGroups: state.getGroups,
+      getUmeds: state.getUmeds,
+      getManufacturers: state.getManufecturers,
+    }),
+  );
+
+  const groupHasSupport = [1, 4, 7, 8, 9, 14];
 
   useEffect(() => {
+    if (id) getProductById(Number(id));
     Promise.all([getGroups(), getUmeds(), getManufacturers()]);
+
+    return () => {
+      clearProduct();
+    };
   }, []);
 
   return (
@@ -45,8 +60,20 @@ const ProductDetailPage = () => {
         <div className="flex justify-start items-start w-full">
           <h2 className="font-semibold text-xl">Produto</h2>
         </div>
-        <div className="flex flex-col gap-4 p-4 w-full rounded-lg shadow">
-          <ProductDetailForm />
+        <div className="flex justify-start gap-4 w-full">
+          <div
+            className={twMerge(
+              "flex flex-col gap-4 p-4 w-full rounded-lg shadow",
+              id && groupHasSupport.includes(product?.group!) && "w-[85%]",
+            )}
+          >
+            <ProductDetailForm product={product!} id={id!} />
+          </div>
+          {id && groupHasSupport.includes(product?.group!) ? (
+            <div className="flex flex-col gap-4 p-4 w-1/3 rounded-lg shadow">
+              <ProductTicketsList productId={id!} />
+            </div>
+          ) : null}
         </div>
       </div>
     </DefaultLayout>

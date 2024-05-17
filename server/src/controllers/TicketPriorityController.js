@@ -1,36 +1,20 @@
-const { Op } = require("sequelize");
-const Product = require("./models/ProductModel.js");
-const { v4: uuidv4 } = require("uuid");
+const TicketPriority = require("./models/TicketPriorityModel.js");
 
 module.exports = {
   async all(request, response) {
     try {
-      const { skip, take, name } = request.query;
-      const PROD_NOME = name;
+      const ticketPriority = await TicketPriority.findAll().then(response => {
+        let dictionary = {};
 
-      const products = await Product.findAll({
-        offset: skip,
-        limit: take,
-        where: {
-          PROD_NOME: { [Op.substring]: PROD_NOME },
-        },
+        for (let key in response) {
+          dictionary[response[key].dataValues.TICKET_PRIORITY_ID] =
+            response[key].dataValues.TICKET_PRIORITY_NAME;
+        }
+
+        return dictionary;
       });
-      const total = await Product.count();
 
-      response.status(200).json({ products, total });
-    } catch (error) {
-      console.log(error);
-      response.status(400).send(error);
-    }
-  },
-  async one(request, response) {
-    try {
-      const PROD_ID = request.params.id;
-      const product = await Product.findOne({ where: { PROD_ID } });
-      if (!product) {
-        return response.status(400).json("Produto não encontrado!");
-      }
-      response.status(200).json(product);
+      response.status(200).json(ticketPriority);
     } catch (error) {
       console.log(error);
       response.status(400).send(error);
@@ -38,26 +22,14 @@ module.exports = {
   },
   async create(request, response) {
     try {
-      const { name, description, price, um_id, group_id, manufacturer_id } = request.body;
-      console.log({
-        PROD_NOME: name,
-        PROD_DESC: description,
-        PROD_VALOR: price,
-        PROD_UMED_ID: um_id,
-        PROD_GRUPO_ID: group_id,
-        PROD_FABRICANTE_ID: manufacturer_id,
+      const { id, name } = request.body;
+
+      await TicketPriority.create({
+        TICKET_TYPE_ID: id,
+        TICKET_TYPE_NAME: name,
       });
 
-      await Product.create({
-        PROD_NOME: name,
-        PROD_DESC: description,
-        PROD_VALOR: price,
-        PROD_UMED_ID: um_id,
-        PROD_GRUPO_ID: group_id,
-        PROD_FABRICANTE_ID: manufacturer_id,
-      });
-
-      response.status(200).json("Produto cadastrado!");
+      response.status(200).json("Prioridade do Ticket criado com sucesso!");
     } catch (error) {
       console.log(error);
       response.status(400).send(error);

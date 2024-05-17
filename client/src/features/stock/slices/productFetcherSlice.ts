@@ -29,7 +29,8 @@ interface ProductState {
 }
 
 type ProductAction = {
-  getProductDetail: (id: number) => Promise<void>;
+  getProductById: (id: number) => Promise<void>;
+  clearProduct: () => void;
 };
 
 export type ProductFetcherSlice = ProductState & ProductAction;
@@ -45,7 +46,7 @@ export const createProductFetcherSlice: StateCreator<
   ProductFetcherSlice
 > = (set) => ({
   ...initialState,
-  getProductDetail: async (id: number) => {
+  getProductById: async (id: number) => {
     set({ product: { ...initialState.product, loading: true } });
     try {
       const res = await axios.get<ProductDetailResponse>(`http://localhost:3000/product/${id}`);
@@ -75,4 +76,5 @@ export const createProductFetcherSlice: StateCreator<
       });
     }
   },
+  clearProduct: () => set(initialState),
 });

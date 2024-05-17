@@ -22,21 +22,66 @@ import {
   ProductDeleterSlice,
   createProductDeleterSlice,
 } from "@/features/stock/slices/productDeleterSlice";
+import {
+  ProductTicketFetcherSlice,
+  createProductTicketFetcherSlice,
+} from "@/features/stock/slices/productTicketsFetcherSlice";
+import {
+  TicketStatusSlice,
+  createTicketStatusSlice,
+} from "@/features/tickets/slices/ticketStatusSlice";
+import {
+  TicketPrioritySlice,
+  createTicketPrioritySlice,
+} from "@/features/tickets/slices/ticketPrioritySlice";
+import { TicketTypeSlice, createTicketTypeSlice } from "@/features/tickets/slices/ticketTypeSlice";
+import {
+  TicketListFetcherSlice,
+  createTicketListFetcherSlice,
+} from "@/features/tickets/slices/ticketListFetcherSlice";
+import {
+  TicketCountSlice,
+  createTicketCountSlice,
+} from "@/features/tickets/slices/ticketCountFetcherSlice";
+import {
+  TicketSaverSlice,
+  createTicketSaverSlice,
+} from "@/features/tickets/slices/ticketSaverSlice";
+import {
+  TicketFetcherSlice,
+  createTicketFetcherSlice,
+} from "@/features/tickets/slices/ticketFetcherSlice";
 
 export const useStore = create<
   ProductListFetcherSlice &
     ProductFetcherSlice &
     ProductSaverSlice &
     ProductDeleterSlice &
+    ProductTicketFetcherSlice &
     UmedSlice &
     GroupSlice &
-    ManufecturerSlice
+    ManufecturerSlice &
+    TicketStatusSlice &
+    TicketPrioritySlice &
+    TicketTypeSlice &
+    TicketListFetcherSlice &
+    TicketCountSlice &
+    TicketSaverSlice &
+    TicketFetcherSlice
 >((...a) => ({
   ...createProductFetcherSlice(...a),
   ...createProductListFetcherSlice(...a),
   ...createProductSaverSlice(...a),
   ...createProductDeleterSlice(...a),
+  ...createProductTicketFetcherSlice(...a),
   ...createUmedSlice(...a),
   ...createGroupSlice(...a),
   ...createManufecturerSlice(...a),
+  ...createTicketStatusSlice(...a),
+  ...createTicketPrioritySlice(...a),
+  ...createTicketTypeSlice(...a),
+  ...createTicketListFetcherSlice(...a),
+  ...createTicketCountSlice(...a),
+  ...createTicketSaverSlice(...a),
+  ...createTicketFetcherSlice(...a),
 }));

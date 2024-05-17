@@ -17,43 +17,27 @@ import { useStore } from "@/store";
 import { ProductDetail } from "../slices/productFetcherSlice";
 import { useToast } from "@/components/ui/use-toast";
 
-interface FormValues {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  umed: string;
-  manufacturer: string;
-  group: string;
+interface ProductDetailFormProps {
+  product: ProductDetail;
+  id: string;
 }
 
-const ProductDetailForm = () => {
-  const { id } = useParams();
-
+const ProductDetailForm = ({ product, id }: ProductDetailFormProps) => {
   const { toast } = useToast();
 
-  const {
-    product,
-    productSaver,
-    getProductById,
-    updateProduct,
-    createProduct,
-    group,
-    umed,
-    manufacturer,
-  } = useStore((state) => ({
-    product: state.product,
-    productSaver: state.productSaver,
-    getProductById: state.getProductDetail,
-    updateProduct: state.updateProduct,
-    createProduct: state.createProduct,
-    group: state.group,
-    umed: state.umed,
-    manufacturer: state.manufacturer,
-  }));
+  const { productSaver, getProductById, updateProduct, createProduct, group, umed, manufacturer } =
+    useStore((state) => ({
+      productSaver: state.productSaver,
+      getProductById: state.getProductDetail,
+      updateProduct: state.updateProduct,
+      createProduct: state.createProduct,
+      group: state.group,
+      umed: state.umed,
+      manufacturer: state.manufacturer,
+    }));
 
   const form = useForm({
-    values: product?.data! || {},
+    values: product || {},
   });
 
   useEffect(() => {
@@ -136,7 +120,6 @@ const ProductDetailForm = () => {
         name={"umed"}
         control={form.control}
         render={({ field: { onChange, name, value } }) => {
-          console.log(value);
           return (
             <FormItem>
               <FormLabel>Unidade de medida</FormLabel>
@@ -166,7 +149,6 @@ const ProductDetailForm = () => {
         name={"manufacturer"}
         control={form.control}
         render={({ field: { onChange, name, value } }) => {
-          console.log(value);
           return (
             <FormItem>
               <FormLabel>Fabricante</FormLabel>
@@ -217,7 +199,7 @@ const ProductDetailForm = () => {
         }}
       />
       <Button onClick={() => onSubmit(form.getValues())} type="submit">
-        Cadastrar
+        Salvar
       </Button>
     </Form>
   );

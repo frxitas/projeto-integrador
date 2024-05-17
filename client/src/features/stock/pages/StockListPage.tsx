@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { Loader2, Pencil, Trash } from "lucide-react";
 
@@ -34,6 +34,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { usePagination } from "@/hooks/usePagination";
 
 const StockListPage = () => {
   const { toast } = useToast();
@@ -49,13 +58,37 @@ const StockListPage = () => {
       clearDeleteProduct: state.clearDeleteProduct,
     }));
 
+  const [searchParams] = useSearchParams();
+  const pageParam = searchParams.get("page")!;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  let skip = (currentPage - 1) * 10;
+  let take = 10;
+
+  const paginationRange = usePagination({
+    page: currentPage,
+    pageSize: 10,
+    siblingCount: 1,
+    totalCount: productList.data?.total!,
+  });
+
   useEffect(() => {
-    getProductList();
+    getProductList(skip, take);
 
     return () => {
       clearDeleteProduct();
     };
   }, []);
+
+  useEffect(() => {
+    let skip = (Number(pageParam) - 1) * 10;
+    let take = 10;
+
+    if (pageParam) {
+      setCurrentPage(Number(pageParam));
+      getProductList(skip, take);
+    }
+  }, [pageParam]);
 
   useEffect(() => {
     if (productDeleter.success) {
@@ -64,7 +97,7 @@ const StockListPage = () => {
       });
       setDeleteAlertIsOpen(false);
       clearDeleteProduct();
-      getProductList();
+      getProductList(skip, take);
     } else if (productDeleter.error) {
       toast({
         title: "Algo deu errado tente novamente mais tarde!",
@@ -85,7 +118,7 @@ const StockListPage = () => {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="flex justify-end items-center w-full">
-          <Link to={"/estoque/detail"}>
+          <Link to={"/estoque/detalhe"}>
             <Button>Adicionar produto</Button>
           </Link>
         </div>
@@ -102,8 +135,8 @@ const StockListPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {productList.data?.length ? (
-                productList.data?.map((product) => {
+              {productList.data?.products.length ? (
+                productList.data?.products.map((product) => {
                   return (
                     <TableRow key={product.id}>
                       <TableCell>{product.name}</TableCell>
@@ -115,7 +148,7 @@ const StockListPage = () => {
                       </TableCell>
                       <TableCell>
                         <div className="flex justify-center items-center gap-4">
-                          <Link to={`/estoque/detail/${product.id}`}>
+                          <Link to={`/estoque/detalhe/${product.id}`}>
                             <Button variant={"outline"} size={"icon"}>
                               <Pencil className="w-4 h-4" />
                             </Button>
@@ -184,6 +217,37 @@ const StockListPage = () => {
             </TableBody>
           </Table>
         </div>
+
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious to={`/estoque?page=${currentPage === 1 ? 1 : currentPage - 1}`} />
+            </PaginationItem>
+
+            {paginationRange.range.map((page, index) => (
+              <PaginationItem key={page + `${index}`}>
+                {page === "..." ? (
+                  page
+                ) : (
+                  <PaginationLink
+                    to={`/estoque?page=${page}`}
+                    isActive={currentPage === page}
+                  >{`${page}`}</PaginationLink>
+                )}
+              </PaginationItem>
+            ))}
+
+            <PaginationItem>
+              <PaginationNext
+                to={`/estoque?page=${
+                  currentPage === paginationRange.lastPage
+                    ? paginationRange.lastPage
+                    : currentPage + 1
+                }`}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </DefaultLayout>
   );

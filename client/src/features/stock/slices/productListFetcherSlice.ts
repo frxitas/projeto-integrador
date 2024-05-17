@@ -13,23 +13,29 @@ export type ProductList = {
 };
 
 interface ProductListResponse {
-  PROD_DESC: string;
-  PROD_FABRICANTE_ID: number;
-  PROD_GRUPO_ID: number;
-  PROD_ID: number;
-  PROD_NOME: string;
-  PROD_UMED_ID: number;
-  PROD_VALOR: number;
+  products: {
+    PROD_DESC: string;
+    PROD_FABRICANTE_ID: number;
+    PROD_GRUPO_ID: number;
+    PROD_ID: number;
+    PROD_NOME: string;
+    PROD_UMED_ID: number;
+    PROD_VALOR: number;
+  }[];
+  total: number;
 }
 
 interface ProductState {
   productList: {
-    data: ProductList[] | null;
+    data: {
+      products: ProductList[];
+      total: number;
+    } | null;
   } & InitialState;
 }
 
 type ProductAction = {
-  getProductList: () => Promise<void>;
+  getProductList: (skip: number, take: number, name?: string) => Promise<void>;
 };
 
 export type ProductListFetcherSlice = ProductState & ProductAction;
@@ -45,24 +51,29 @@ export const createProductListFetcherSlice: StateCreator<
   ProductListFetcherSlice
 > = (set) => ({
   ...initialState,
-  getProductList: async () => {
+  getProductList: async (skip = 0, take = 10, name = "") => {
     set({ productList: { ...initialState.productList, loading: true } });
     try {
-      const res = await axios.get<ProductListResponse[]>(`http://localhost:3000/product/list`);
+      const res = await axios.get<ProductListResponse>(`http://localhost:3000/product/list`, {
+        params: { skip, take, name },
+      });
       set({
         productList: {
           ...initialState.productList,
-          data: res.data.map((product) => {
-            return {
-              description: product.PROD_DESC,
-              group: product.PROD_GRUPO_ID,
-              id: product.PROD_ID,
-              manufacturer: product.PROD_FABRICANTE_ID,
-              name: product.PROD_NOME,
-              price: product.PROD_VALOR,
-              umed: product.PROD_UMED_ID,
-            };
-          }),
+          data: {
+            products: res.data.products.map((product) => {
+              return {
+                description: product.PROD_DESC,
+                group: product.PROD_GRUPO_ID,
+                id: product.PROD_ID,
+                manufacturer: product.PROD_FABRICANTE_ID,
+                name: product.PROD_NOME,
+                price: product.PROD_VALOR,
+                umed: product.PROD_UMED_ID,
+              };
+            }),
+            total: res.data.total,
+          },
           success: true,
         },
       });
