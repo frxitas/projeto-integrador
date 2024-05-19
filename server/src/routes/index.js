@@ -8,6 +8,7 @@ const ticketPriorityRouter = require("./ticketPriority.routes.js");
 const manufacturersRouter = require("./manufacturer.routes.js");
 const groupsRouter = require("./group.routes.js");
 const unitiesRouter = require("./unity.routes.js");
+const mailRouter = require("./mail.routes.js");
 
 const routes = Router();
 
@@ -19,5 +20,6 @@ routes.use("/ticket/priority", ticketPriorityRouter);
 routes.use("/manufacturers", manufacturersRouter);
 routes.use("/groups", groupsRouter);
 routes.use("/unities", unitiesRouter);
+routes.use("/mail", mailRouter);
 
 module.exports = routes;
