@@ -81,6 +81,7 @@ export const createTicketSaverSlice: StateCreator<TicketSaverSlice, [], [], Tick
         type: ticket.type,
       };
 
+      await axios.post(`http://localhost:3000/mail`, data);
       const res = await axios.post(`http://localhost:3000/ticket/create`, data);
 
       if (res.status === 200) {

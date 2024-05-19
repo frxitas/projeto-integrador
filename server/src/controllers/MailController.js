@@ -3,7 +3,6 @@ const send = require("../services/nodemailer");
 module.exports = {
   async sendMail(request, response) {
     const {
-      to,
       subject,
       productId,
       contact,
@@ -11,6 +10,8 @@ module.exports = {
       type,
       priority,
     } = request.body;
+
+    const to = [process.env.MAIL_FROM, contact]
 
     const supportHTML = `
       <!doctype html>
@@ -22,7 +23,7 @@ module.exports = {
           <div style="display: block; margin: auto; max-width: 600px;" class="main">
             <img alt="Banner do e-mail" src="https://cdn.pixabay.com/photo/2021/01/29/10/55/back-to-school-5960645_960_720.jpg" style="width: 100%; height: 70px; object-fit: cover;">
             <h1 style="font-size: 20px; font-weight: bold; margin-top: 20px">Abertura de chamado - ${subject}</h1>
-            <p>Produto: ${productId}</p>
+            <p>ID do Produto: ${productId}</p>
             <h2 style="font-size: 18px; font-weight: bold; margin-top: 15px">Detalhes do chamado:</h2>
             <p style="text-align: justify;">Descrição: ${description}</p>
             <p>Tipo: ${type}</p>
@@ -50,7 +51,7 @@ module.exports = {
           </p>
           <br/>
           <h2 style="font-size: 18px; font-weight: bold; margin-top: 15px">Detalhes do chamado:</h2>
-          <p>Produto: ${productId}</p>
+          <p>ID do Produto: ${productId}</p>
           <p style="text-align: justify;">Descrição: ${description}</p>
           <p>Tipo: ${type}</p>
           <p>Prioridade: ${priority}</p>
