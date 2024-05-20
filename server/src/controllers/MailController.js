@@ -1,14 +1,13 @@
 require("dotenv").config();
 const send = require("../services/nodemailer");
-const TicketPriorityController = require("./TicketPriorityController");
-const TicketTypeController = require("./TicketTypeController");
+const { TicketPriority } = require("../utils/ticketPriorityEnum");
+const { TicketType } = require("../utils/ticketTypeEnum");
 
 module.exports = {
   async sendMail(request) {
     const { subject, productId, contact, description, type, priority } = request;
-
-    const ticketTypeName = await TicketTypeController.one(type);
-    const priorityTicketName = await TicketPriorityController.one(priority);
+    const ticketTypeName = TicketType[type];
+    const priorityTicketName = TicketPriority[priority];
 
     const to = [process.env.MAIL_FROM, contact];
 
