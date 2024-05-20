@@ -10,13 +10,11 @@ const transport = nodemailer.createTransport({
   },
 });
 
-const send = (to, subject, body) => {
+const send = (to, subject, body) =>
   transport.sendMail({
     from: process.env.MAIL_FROM,
     to,
     subject,
     html: body,
   });
-};
-
 module.exports = send;

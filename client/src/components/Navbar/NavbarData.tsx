@@ -1,19 +1,14 @@
-import { Cube, ChartBar, Barcode } from "@phosphor-icons/react";
+import { Cuboid, TicketCheck } from "lucide-react";
 
 export const navbarData = [
   {
     label: "Estoque",
-    icon: Cube,
+    icon: Cuboid,
     link: "/estoque",
   },
   {
-    label: "Relatório",
-    icon: ChartBar,
-    link: "#",
-  },
-  {
     label: "Chamados",
-    icon: Barcode,
+    icon: TicketCheck,
     link: "/chamados",
   },
 ];

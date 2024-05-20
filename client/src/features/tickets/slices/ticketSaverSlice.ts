@@ -42,9 +42,9 @@ export const createTicketSaverSlice: StateCreator<TicketSaverSlice, [], [], Tick
         contact: ticket.contact,
         subject: ticket.subject,
         description: ticket.description,
-        priority: ticket.priority,
+        priority: Number(ticket.priority),
         status: ticket.status,
-        type: ticket.type,
+        type: Number(ticket.type),
       };
 
       const res = await axios.put(`http://localhost:3000/ticket/update/${ticket.id}`, data);
@@ -77,11 +77,10 @@ export const createTicketSaverSlice: StateCreator<TicketSaverSlice, [], [], Tick
         contact: ticket.contact,
         subject: ticket.subject,
         description: ticket.description,
-        priority: ticket.priority,
-        type: ticket.type,
+        priority: Number(ticket.priority),
+        type: Number(ticket.type),
       };
 
-      await axios.post(`http://localhost:3000/mail`, data);
       const res = await axios.post(`http://localhost:3000/ticket/create`, data);
 
       if (res.status === 200) {

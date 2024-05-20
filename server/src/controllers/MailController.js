@@ -1,17 +1,11 @@
+require("dotenv").config();
 const send = require("../services/nodemailer");
 
 module.exports = {
-  async sendMail(request, response) {
-    const {
-      subject,
-      productId,
-      contact,
-      description,
-      type,
-      priority,
-    } = request.body;
+  async sendMail(request) {
+    const { subject, productId, contact, description, type, priority } = request;
 
-    const to = [process.env.MAIL_FROM, contact]
+    const to = [process.env.MAIL_FROM, contact];
 
     const supportHTML = `
       <!doctype html>
@@ -66,11 +60,11 @@ module.exports = {
         </div>
       </body>
     </html>
-    `
+    `;
 
-    send(to[0], subject, supportHTML);
-    send(to[1], subject, clientHTML);
+    const support = await send(to[0], subject, supportHTML);
+    const client = await send(to[1], subject, clientHTML);
 
-    return response.json(`E-mail enviado.`);
+    return { support: support.messageId, client: client.messageId };
   },
 };

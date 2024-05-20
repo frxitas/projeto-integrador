@@ -25,24 +25,20 @@ interface ProductDetailFormProps {
 const ProductDetailForm = ({ product, id }: ProductDetailFormProps) => {
   const { toast } = useToast();
 
-  const { productSaver, getProductById, updateProduct, createProduct, group, umed, manufacturer } =
-    useStore((state) => ({
+  const { productSaver, updateProduct, createProduct, group, umed, manufacturer } = useStore(
+    (state) => ({
       productSaver: state.productSaver,
-      getProductById: state.getProductDetail,
       updateProduct: state.updateProduct,
       createProduct: state.createProduct,
       group: state.group,
       umed: state.umed,
       manufacturer: state.manufacturer,
-    }));
+    }),
+  );
 
   const form = useForm({
     values: product || {},
   });
-
-  useEffect(() => {
-    if (id) getProductById(Number(id));
-  }, []);
 
   useEffect(() => {
     if (productSaver.success) {

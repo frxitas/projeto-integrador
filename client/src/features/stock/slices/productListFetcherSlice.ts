@@ -36,6 +36,7 @@ interface ProductState {
 
 type ProductAction = {
   getProductList: (skip: number, take: number, name?: string) => Promise<void>;
+  clearProductList: () => void;
 };
 
 export type ProductListFetcherSlice = ProductState & ProductAction;
@@ -87,5 +88,8 @@ export const createProductListFetcherSlice: StateCreator<
         },
       });
     }
+  },
+  clearProductList: () => {
+    set(initialState);
   },
 });

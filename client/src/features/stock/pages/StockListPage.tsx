@@ -43,20 +43,28 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePagination } from "@/hooks/usePagination";
+import { Spinner } from "@phosphor-icons/react";
 
 const StockListPage = () => {
   const { toast } = useToast();
 
   const [deleteAlertIsOpen, setDeleteAlertIsOpen] = useState(false);
 
-  const { productList, getProductList, productDeleter, deleteProduct, clearDeleteProduct } =
-    useStore((state) => ({
-      productList: state.productList,
-      getProductList: state.getProductList,
-      productDeleter: state.productDeleter,
-      deleteProduct: state.deleteProduct,
-      clearDeleteProduct: state.clearDeleteProduct,
-    }));
+  const {
+    productList,
+    getProductList,
+    clearProductList,
+    productDeleter,
+    deleteProduct,
+    clearDeleteProduct,
+  } = useStore((state) => ({
+    productList: state.productList,
+    getProductList: state.getProductList,
+    clearProductList: state.clearProductList,
+    productDeleter: state.productDeleter,
+    deleteProduct: state.deleteProduct,
+    clearDeleteProduct: state.clearDeleteProduct,
+  }));
 
   const [searchParams] = useSearchParams();
   const pageParam = searchParams.get("page")!;
@@ -77,6 +85,7 @@ const StockListPage = () => {
 
     return () => {
       clearDeleteProduct();
+      clearProductList();
     };
   }, []);
 
@@ -135,7 +144,11 @@ const StockListPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {productList.data?.products.length ? (
+              {productList.loading ? (
+                <div className="flex justify-center items-center h-96">
+                  <Spinner />
+                </div>
+              ) : productList.data?.products.length ? (
                 productList.data?.products.map((product) => {
                   return (
                     <TableRow key={product.id}>
@@ -201,14 +214,8 @@ const StockListPage = () => {
                 })
               ) : (
                 <TableRow>
-                  <TableCell colSpan={5}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
+                  <TableCell colSpan={3}>
+                    <div className="flex justify-center items-center w-full">
                       Sem valor para exibir!
                     </div>
                   </TableCell>

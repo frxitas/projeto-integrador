@@ -1,4 +1,6 @@
 const Ticket = require("./models/TicketModel.js");
+const mailController = require("../controllers/MailController");
+
 const Op = require("sequelize").Op;
 
 module.exports = {
@@ -74,6 +76,7 @@ module.exports = {
         CREATED_AT: Math.floor(new Date().getTime() / 1000 - 10800),
         UPDATED_AT: Math.floor(new Date().getTime() / 1000 - 10800),
       });
+      await mailController.sendMail(request.body)
 
       response.status(200).json("Ticket criado com sucesso!");
     } catch (error) {

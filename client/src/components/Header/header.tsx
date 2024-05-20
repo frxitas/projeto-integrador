@@ -5,9 +5,9 @@ const Header = React.forwardRef<HTMLDivElement>(({ ...props }, ref) => {
     <div
       ref={ref}
       {...props}
-      className="flex justify-center items-center sticky w-full h-14 bg-white shadow"
+      className="flex justify-end items-center sticky w-full h-14 bg-white shadow p-4"
     >
-      Header
+      <h1 className="font-bold text-2xl">Controlador de Estoque</h1>
     </div>
   );
 });

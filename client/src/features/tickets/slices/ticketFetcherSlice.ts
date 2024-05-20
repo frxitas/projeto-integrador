@@ -11,6 +11,7 @@ interface TicketState {
 
 type TicketAction = {
   getTicketById: (id: number) => Promise<void>;
+  clearTicket: () => void;
 };
 
 export type TicketFetcherSlice = TicketState & TicketAction;
@@ -44,7 +45,7 @@ export const createTicketFetcherSlice: StateCreator<
             status: res.data.TICKET_STATUS,
             subject: res.data.TICKET_SUBJECT,
             type: res.data.TICKET_TYPE,
-            contact: res.data.TICKET_CONTACT
+            contact: res.data.TICKET_CONTACT,
           },
           success: true,
         },
@@ -59,5 +60,8 @@ export const createTicketFetcherSlice: StateCreator<
         },
       });
     }
+  },
+  clearTicket: () => {
+    set(initialState);
   },
 });

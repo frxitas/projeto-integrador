@@ -36,7 +36,7 @@ const TicketDetailPage = () => {
     let skip = 0;
     let take = 10;
     getProductList(skip, take);
-    
+
     getTicketTypes();
     getTicketPriority();
 
@@ -63,7 +63,7 @@ const TicketDetailPage = () => {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-end w-full">
           <h2 className="text-2xl font-semibold">
             {ticket.data?.id ? (
               <span className="flex gap-2">

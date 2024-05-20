@@ -8,6 +8,7 @@ Ticket.init(
     TICKET_ID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true
     },
     PRODUCT_ID: {
       type: DataTypes.UUID,
@@ -36,9 +37,6 @@ Ticket.init(
     UPDATED_AT: {
       type: DataTypes.INTEGER,
     },
-    // FILES: {
-    //   type: DataTypes.,
-    // },
   },
   {
     sequelize,
