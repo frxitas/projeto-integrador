@@ -1,6 +1,16 @@
 const TicketPriority = require("./models/TicketPriorityModel.js");
 
 module.exports = {
+  async one(request, response) {
+    try {
+      const ticketPriority = await TicketPriority.findOne({where: {TICKET_PRIORITY_ID: request}});
+
+      return ticketPriority.TICKET_PRIORITY_NAME;
+    } catch (error) {
+      console.log(error);
+      response.status(400).send(error);
+    }
+  },
   async all(request, response) {
     try {
       const ticketPriority = await TicketPriority.findAll().then(response => {

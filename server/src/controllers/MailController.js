@@ -1,9 +1,14 @@
 require("dotenv").config();
 const send = require("../services/nodemailer");
+const TicketPriorityController = require("./TicketPriorityController");
+const TicketTypeController = require("./TicketTypeController");
 
 module.exports = {
   async sendMail(request) {
     const { subject, productId, contact, description, type, priority } = request;
+
+    const ticketTypeName = await TicketTypeController.one(type);
+    const priorityTicketName = await TicketPriorityController.one(priority);
 
     const to = [process.env.MAIL_FROM, contact];
 
@@ -20,8 +25,8 @@ module.exports = {
             <p>ID do Produto: ${productId}</p>
             <h2 style="font-size: 18px; font-weight: bold; margin-top: 15px">Detalhes do chamado:</h2>
             <p style="text-align: justify;">Descrição: ${description}</p>
-            <p>Tipo: ${type}</p>
-            <p>Prioridade: ${priority}</p>
+            <p>Tipo: ${ticketTypeName}</p>
+            <p>Prioridade: ${priorityTicketName}</p>
             <p>Contato: ${contact}</p>
           </div>
         </body>
@@ -47,8 +52,8 @@ module.exports = {
           <h2 style="font-size: 18px; font-weight: bold; margin-top: 15px">Detalhes do chamado:</h2>
           <p>ID do Produto: ${productId}</p>
           <p style="text-align: justify;">Descrição: ${description}</p>
-          <p>Tipo: ${type}</p>
-          <p>Prioridade: ${priority}</p>
+          <p>Tipo: ${ticketTypeName}</p>
+          <p>Prioridade: ${priorityTicketName}</p>
   
           <br/>
           <p style="text-align: justify;">

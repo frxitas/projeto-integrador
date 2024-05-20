@@ -3,8 +3,7 @@ const TicketType = require("./models/TicketTypeModel.js");
 module.exports = {
   async one(request, response) {
     try {
-      const TICKET_TYPE_ID = request.params.id;
-      const ticketType = await TicketType.findOne({where: {TICKET_TYPE_ID}});
+      const ticketType = await TicketType.findOne({where: {TICKET_TYPE_ID: request}});
 
       return ticketType.TICKET_TYPE_NAME;
     } catch (error) {
