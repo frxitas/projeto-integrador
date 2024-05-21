@@ -1,41 +1,44 @@
-const Product = require("../models/ProductModel.js");
-const { v4: uuidv4 } = require('uuid');
+const { Op } = require("sequelize");
+const Product = require("./models/ProductModel.js");
+const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
   async all(request, response) {
     try {
+      const { skip, take, name } = request.query;
+      const PROD_NOME = name;
 
-      const products = await Product.findAll();
-      response.status(200).json(products);
+      const products = await Product.findAll({
+        offset: skip,
+        limit: take,
+        where: {
+          PROD_NOME: { [Op.substring]: PROD_NOME },
+        },
+      });
+      const total = await Product.count();
 
+      response.status(200).json({ products, total });
     } catch (error) {
-
       console.log(error);
       response.status(400).send(error);
-
     }
   },
   async one(request, response) {
     try {
-
       const PROD_ID = request.params.id;
       const product = await Product.findOne({ where: { PROD_ID } });
       if (!product) {
         return response.status(400).json("Produto não encontrado!");
       }
       response.status(200).json(product);
-
     } catch (error) {
-
       console.log(error);
       response.status(400).send(error);
-
     }
   },
   async create(request, response) {
     try {
-
-      const { name, description, price, um_id, group_id, manufacturer_id } = request.body;      
+      const { name, description, price, um_id, group_id, manufacturer_id } = request.body;
       console.log({
         PROD_NOME: name,
         PROD_DESC: description,
@@ -44,7 +47,7 @@ module.exports = {
         PROD_GRUPO_ID: group_id,
         PROD_FABRICANTE_ID: manufacturer_id,
       });
-      
+
       await Product.create({
         PROD_NOME: name,
         PROD_DESC: description,
@@ -53,19 +56,15 @@ module.exports = {
         PROD_GRUPO_ID: group_id,
         PROD_FABRICANTE_ID: manufacturer_id,
       });
-      
+
       response.status(200).json("Produto cadastrado!");
-
     } catch (error) {
-
       console.log(error);
       response.status(400).send(error);
-
     }
   },
   async update(request, response) {
     try {
-
       const { name, description, price, um_id, group_id, manufacturer_id } = request.body;
       const PROD_ID = request.params.id;
       const product = await Product.findOne({ where: { PROD_ID } });
@@ -83,17 +82,13 @@ module.exports = {
 
       await product.save();
       response.status(200).json("Produto atualizado!");
-
     } catch (error) {
-
       console.log(error);
       response.status(400).send(error);
-
     }
   },
-  async delete(request,response){
+  async delete(request, response) {
     try {
-
       const PROD_ID = request.params.id;
       const product = await Product.destroy({ where: { PROD_ID } });
 
@@ -102,12 +97,9 @@ module.exports = {
       }
 
       response.status(200).json("Produto excluído!");
-
     } catch (error) {
-
       console.log(error);
       response.status(400).send(error);
-
     }
-  }
+  },
 };

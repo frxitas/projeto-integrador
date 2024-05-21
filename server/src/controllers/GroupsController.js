@@ -1,4 +1,4 @@
-const Group = require("../models/GroupModel.js");
+const Group = require("./models/GroupModel.js");
 
 module.exports = {
   async all(request, response) {

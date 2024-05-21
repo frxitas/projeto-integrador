@@ -1,4 +1,4 @@
-const Unity = require("../models/UnityModel.js");
+const Unity = require("./models/UnityModel.js");
 
 module.exports = {
   async all(request, response) {
