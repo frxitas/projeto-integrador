@@ -1,3 +1,4 @@
+
 ## Documentação do Projeto
 
 ### Introdução
@@ -16,6 +17,7 @@ O sistema de gerenciamento de estoque será desenvolvido para instituições de 
 * O sistema deve permitir que a faculdade gere relatórios sobre o estoque de produtos.
 
 ### Requisitos Não Funcionais
+
 
 * O sistema deve ser fácil de usar e intuitivo.
 * O sistema deve ser seguro e protegido contra acesso não autorizado.
@@ -199,5 +201,3 @@ MAIL_FROM="support@email.com"
   <li>Kelvin Coelho Loiola - Banco de dados/Documentação</li>
   <li>Vinícius Carmo Fonseca - Front-end</li>
 </ul>
-
-
