@@ -2,11 +2,11 @@
 
 ### Introdução
 
-Este documento descreve o projeto de desenvolvimento de um sistema de gerenciamento de estoque para uma faculdade. O objetivo deste projeto é criar um sistema que permita à faculdade gerenciar seu estoque de forma eficiente e eficaz.
+Este documento descreve o projeto de desenvolvimento de um sistema de gerenciamento de estoque para uma instituição de ensino. O objetivo deste projeto é criar um sistema que permita à instituição de ensino gerenciar seu estoque de forma eficiente e eficaz.
 
 ### Escopo
 
-O sistema de gerenciamento de estoque será desenvolvido para a faculdade de XYΖ. O sistema permitirá que a faculdade gerencie seu estoque de produtos, incluindo a adição de novos produtos, a atualização de informações de produtos existentes e a remoção de produtos do estoque. O sistema também permitirá que a instituição gere relatórios sobre o estoque de produtos.
+O sistema de gerenciamento de estoque será desenvolvido para instituições de ensino. O sistema permitirá que a instituição de ensino gerencie seu estoque de produtos, incluindo a adição de novos produtos, a atualização de informações de produtos existentes e a remoção de produtos do estoque. O sistema também permitirá que a instituição gere relatórios sobre o estoque de produtos, além de realizar a abertura de chamados para reposição e suporte de materiais escolares.
 
 ### Requisitos Funcionais
 
@@ -22,36 +22,6 @@ O sistema de gerenciamento de estoque será desenvolvido para a faculdade de XY�
 * O sistema deve ser escalável e capaz de lidar com grandes volumes de dados.
 
 
-### Definição de Personas
-**Administradores Escolares:** Podem usar o software para gerenciar a escola de forma eficiente. Isso pode incluir tarefas como agendar aulas, gerenciar o calendário escolar, acompanhar o desempenho dos alunos e professores, gerenciar a admissão e matrícula de alunos, e comunicar-se com os pais. Eles também podem usar o software para analisar dados e gerar relatórios que ajudem na tomada de decisões.
-- Pontos de Contato: Login no software, painel de controle, funcionalidades de gerenciamento.
-- Etapas: Autenticação, visualização do painel de controle, seleção e execução de tarefas.
-- Emoções: Sentimento de controle e eficiência.
-- Objetivos: Gerenciar a escola de forma eficiente.
-- Necessidades: Interface intuitiva, acesso rápido às funcionalidades.
-- Pontos de Dor: Dificuldade em encontrar funcionalidades, lentidão do software.
-
-**Professores:** Os professores podem usar o software para planejar suas aulas, atribuir tarefas, avaliar o desempenho dos alunos, e se comunicar com os alunos e pais. Eles também podem usar o software para acessar recursos de ensino e participar de programas de desenvolvimento profissional.
-- Pontos de Contato: Acesso aos recursos de ensino, planejamento de aulas, comunicação com alunos e pais.
-- Etapas: Acesso aos recursos, criação de planos de aula, atribuição de tarefas, avaliação do desempenho dos alunos, comunicação com alunos e pais.
-- Emoções: Sentimento de preparação e organização.
-- Objetivos: Preparar aulas eficazes, avaliar o desempenho dos alunos, se comunicar efetivamente.
-- Necessidades: Acesso fácil a recursos, ferramentas de planejamento intuitivas, ferramentas de comunicação eficazes.
-- Pontos de Dor: Falta de recursos adequados, interface complicada, dificuldade na comunicação.
-
-
-**Equipes Responsáveis pela Logística:** Essas equipes podem usar o software para gerenciar a infraestrutura da escola, como salas de aula, laboratórios, bibliotecas etc. Eles também podem usar o software para gerenciar o transporte escolar, a cantina, e outros serviços auxiliares. Além disso, eles podem usar o software para acompanhar o uso de recursos e planejar a manutenção e reparos necessários.
-
-- Pontos de Contato: Gerenciamento de infraestrutura, planejamento de manutenção, gerenciamento de serviços auxiliares.
-- Etapas: Verificação do status da infraestrutura, planejamento de manutenção, gerenciamento de serviços auxiliares.
-- Emoções: Sentimento de responsabilidade e eficácia.
-- Objetivos: Manter a infraestrutura da escola em bom estado, planejar e executar manutenção eficaz, gerenciar serviços auxiliares eficientemente.
-- Necessidades: Atualizações de status em tempo real, ferramentas de planejamento eficazes, informações precisas sobre os serviços auxiliares.
-- Pontos de Dor: Falta de informações atualizadas, dificuldade em planejar manutenção, falta de controle sobre os serviços auxiliares.
-Descrição sobre o uso de serviços de terceiros
-
-
-
 ### Tecnologias Utilizadas
 
 As seguintes tecnologias serão utilizadas no desenvolvimento do sistema:
@@ -65,7 +35,7 @@ A escolha de JavaScript como linguagem principal para o desenvolvimento de um si
 * **Ferramentas de Desenvolvimento:** O NPM é o maior repositório de pacotes do mundo, permitindo a fácil integração de pacotes de terceiros e o gerenciamento eficiente de dependências.
 * **Desenvolvimento Rápido:** Ferramentas e frameworks como Express.js permitem a criação rápida de APIs RESTful e outras funcionalidades de backend.
 
-##### Principais Frameworks
+##### Principais Frameworks e Bibliotecas
 * **Sequelize ORM:** A utilização do Sequelize para modelagem e interação com o banco de dados SQL mostra a capacidade de JavaScript de se integrar com bases de dados de maneira eficiente e estruturada.
 * **Express.js:** A configuração de rotas e controladores utilizando Express.js demonstra como o desenvolvimento de servidores web e APIs RESTful pode ser direto e intuitivo.
 * **Nodemailer:** A integração com serviços de email utilizando Nodemailer destaca a facilidade de JavaScript em interagir com serviços externos e realizar tarefas assíncronas.
@@ -118,12 +88,6 @@ O sistema foi desenvolvido utilizando a arquitetura MVC (Model-View-Controller).
 
 Os modelos são responsáveis por organizar a lógica de negócios referente a como os dados serão manipulados, sendo responsável por armazenar e recuperar informações do banco de dados. O modelo também é responsável por validar as informações inseridas pelo usuário e garantir que elas estejam corretas. Desta forma, temos um modelo para cada uma das tabelas listadas.
 
-<br>
-<br>
-<br>
-<br>
-
-
 #### Controladores
 
 Atua como um intermediário entre o Model e a View. Ele recebe a entrada do usuário através da View, processa essa entrada (eventualmente modificando o estado do Model), e determina qual View deve ser atualizada ou exibida. O Controller coordena a comunicação entre o Model e a View para garantir que as ações do usuário resultem nas respostas adequadas da interface. Além disso, o Controller é responsável por definir as Routes (rotas) da aplicação, que mapeiam URLs específicas para funções ou métodos específicos do Controller. As rotas determinam como as solicitações de entrada (geralmente de navegadores web) são direcionadas para os controladores apropriados, garantindo que cada URL execute a lógica correta da aplicação.
@@ -163,28 +127,42 @@ A camada de apresentação que exibe os dados ao usuário. Ela é responsável p
 <br>
 
 * Tela de Visualização do Produto
-![alt text](image-8.png)
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/7da4aa46-38f4-4cc1-9c4d-11ad47085bc3)
 
 <br>
 <br>
 
-* Tela de Chamados
-![alt text](image-3.png)
+* Tela de Índice de Chamados
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/4a6d6540-cb5f-4396-9377-b4ed6cbc1b87)
 
 <br>
 
-* Tela de Novo Chamado
-![alt text](image-7.png)
+* Tela de Criação de um novo chamado
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/ea2c8ad1-25c9-4a8e-82ea-3722980494c0)
+
+<br>
+
+* E-mail de confirmação da abertura de um novo chamado
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/b7f5c869-b98f-43e9-b1d4-36ac4d3c1cdd)
+
+<br>
+
+* E-mail enviado ao suporte após abertura de um novo chamado
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/bdb571bd-bd35-4a3e-81e1-b998320cdd17)
+
 
 <br>
 <br>
 <br>
 
 ### Colaboradores
-Diego Delgado dos Reis - Documentação
-Felipe Micaroni - Apresentação
-Guilherme Freitas Rocha - Front-end
-Guilherme Henrique Totti Benatti - Back-end
-Kelvin Coelho Loiola - Banco de dados/Documentação
-Vinícius Carmo Fonseca - Front-end
+<ul>
+  <li>Diego Delgado dos Reis - Documentação</li>
+  <li>Felipe Micaroni - Apresentação</li>
+  <li>Guilherme Freitas Rocha - Front-end</li>
+  <li>Guilherme Henrique Totti Benatti - Back-end</li>
+  <li>Kelvin Coelho Loiola - Banco de dados/Documentação</li>
+  <li>Vinícius Carmo Fonseca - Front-end</li>
+</ul>
+
 
