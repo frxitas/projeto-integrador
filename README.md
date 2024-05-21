@@ -40,12 +40,7 @@ A escolha de JavaScript como linguagem principal para o desenvolvimento de um si
 * **Express.js:** A configuração de rotas e controladores utilizando Express.js demonstra como o desenvolvimento de servidores web e APIs RESTful pode ser direto e intuitivo.
 * **Nodemailer:** A integração com serviços de email utilizando Nodemailer destaca a facilidade de JavaScript em interagir com serviços externos e realizar tarefas assíncronas.
 
-
 <br>
-<br>
-<br>
-<br>
-
 
 ####  Banco de dados SQLite;
 
@@ -80,6 +75,9 @@ O banco de dados ficou com a seguinte definição de tabelas e atributos
 ##### Tipo de Ticket
 <table><thead><tr><th>Nome do Atributo</th><th>Tipo de Dado</th><th>Descrição</th><th>Tipo de Chave</th></tr></thead><tbody><tr><td><code>TICKET_TYPE_ID</code></td><td><code>INTEGER</code></td><td>Chave primária</td><td>Primária</td></tr><tr><td><code>TICKET_TYPE_NAME</code></td><td><code>STRING</code></td><td>Nome do tipo de ticket</td><td>Nenhuma</td></tr></tbody></table>
 
+<br>
+<br>
+
 ### Arquitetura do Sistema
 
 O sistema foi desenvolvido utilizando a arquitetura MVC (Model-View-Controller). Essa arquitetura separa a lógica de negócio da interface do usuário, permitindo que cada componente seja desenvolvido e testado independentemente.
@@ -108,6 +106,9 @@ Como a tecnicidade dos  CRUDs se mantém similar em todos os controladores, pode
 * **Serviços de Email e SMS:** Serviço de envio de E-mail: A aplicação oferece o serviço de abertura de chamados (em tickets) para manutenção e suporte de materiais escolares e de laboratório (informática, artes, ciências etc.). A cada abertura de um novo chamado, feita pela instituição escolar, um e-mail de confirmação é enviado para a própria instituição e outro é destinado ao suporte. Para realizar o envio de e-mails é necessário um servidor SMTP (Simple Mail Transfer Protocol). O serviço escolhido foi o Mailtrap, que oferece um pacote de teste gratuito, ideal para o desenvolvimento da aplicação e realização de testes. Outro motivo da escolha pelo Mailtrap é o suporte e integração com Node.js e a biblioteca nodemailer, utilizados para desenvolver a aplicação.
 * **Ferramentas de Análise:** O Mailtrap pode usar o Google Analytics para entender melhor como os usuários estão interagindo com o software e identificar áreas para melhoria.
 
+<br>
+<br>
+
 #### Visualização
 
 A camada de apresentação que exibe os dados ao usuário. Ela é responsável por renderizar a interface do usuário e por exibir os dados fornecidos pelo Model de maneira compreensível. A View também captura a entrada do usuário e a encaminha ao Controller.
@@ -134,7 +135,7 @@ A camada de apresentação que exibe os dados ao usuário. Ela é responsável p
 <br>
 
 * Tela de Criação de um novo chamado
-![image](https://github.com/frxitas/projeto-integrador/assets/62620636/ea2c8ad1-25c9-4a8e-82ea-3722980494c0)
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/474847cb-1041-44be-8bb4-12cd682c1290)
 
 <br>
 
