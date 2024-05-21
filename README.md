@@ -148,6 +148,18 @@ A camada de apresentação que exibe os dados ao usuário. Ela é responsável p
 ![image](https://github.com/frxitas/projeto-integrador/assets/62620636/bdb571bd-bd35-4a3e-81e1-b998320cdd17)
 
 
+## Configuração de ambiente
+Para que o serviço de envio de e-mail na criação de chamados funcione corretamente, é necessário alterar as variáveis ambientes no arquivo .env do servidor, de acordo com as variáveis fornecidas pelo serviço de SMTP (utilizamos o Mailtrap para esta aplicação). 
+
+Siga o .env.example.
+```
+MAIL_HOST="sandbox.smtp.mailtrap.io"
+MAIL_PORT=2525
+MAIL_USER=""
+MAIL_PASS=""
+
+MAIL_FROM="support@email.com"
+```
 <br>
 <br>
 <br>
