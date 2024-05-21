@@ -123,7 +123,7 @@ A camada de apresentação que exibe os dados ao usuário. Ela é responsável p
 <br>
 
 * Tela de Visualização do Produto
-![image](https://github.com/frxitas/projeto-integrador/assets/62620636/7da4aa46-38f4-4cc1-9c4d-11ad47085bc3)
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/59a3947c-4a78-4278-921c-43e4ba0c9a7e)
 
 <br>
 <br>
