@@ -149,6 +149,32 @@ A camada de apresentação que exibe os dados ao usuário. Ela é responsável p
 
 
 ## Configuração de ambiente
+
+Para rodar a aplicação, siga os passos descritos abaixo:
+```bash
+# Clonar o repositório
+$ git clone git@github.com:frxitas/projeto-integrador.git
+
+
+# Navegar até o repositório
+$ cd projeto-integrador
+
+# Navegar até o servidor
+$ cd server
+
+# Instalar dependências
+$ npm install
+
+# Navegar até o cliente front-end
+$ cd server
+
+# Instalar dependências
+$ npm install
+
+# Rodar o projeto em ambiente de desenvolvimento (para ambos cliente e servidor)
+$ npm run dev
+```
+
 Para que o serviço de envio de e-mail na criação de chamados funcione corretamente, é necessário alterar as variáveis ambientes no arquivo .env do servidor, de acordo com as variáveis fornecidas pelo serviço de SMTP (utilizamos o Mailtrap para esta aplicação). 
 
 Siga o .env.example.
