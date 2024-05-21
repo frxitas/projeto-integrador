@@ -166,7 +166,7 @@ $ cd server
 $ npm install
 
 # Navegar até o cliente front-end
-$ cd server
+$ cd ../client
 
 # Instalar dependências
 $ npm install
