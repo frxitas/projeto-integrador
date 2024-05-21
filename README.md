@@ -113,16 +113,12 @@ Como a tecnicidade dos  CRUDs se mantém similar em todos os controladores, pode
 A camada de apresentação que exibe os dados ao usuário. Ela é responsável por renderizar a interface do usuário e por exibir os dados fornecidos pelo Model de maneira compreensível. A View também captura a entrada do usuário e a encaminha ao Controller.
 
 * Tela inicial
-![alt text](image.png)
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/e1910806-9ec0-4004-8336-71d69a202c50)
 
 <br>
-<br>
-<br>
-<br>
-
 
 * Tela para Adicionar produto
-![alt text](image-1.png)
+![image](https://github.com/frxitas/projeto-integrador/assets/62620636/1cf97e0b-ad58-4f7b-a0de-83bdf1458faa)
 
 <br>
 
